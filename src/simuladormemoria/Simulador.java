@@ -1,4 +1,4 @@
-package simulador_memoria;
+package simuladormemoria;
 
 public class Simulador {
     public static void main(String[] args) throws InterruptedException {

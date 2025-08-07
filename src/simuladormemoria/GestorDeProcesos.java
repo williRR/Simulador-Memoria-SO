@@ -1,4 +1,4 @@
-package simulador_memoria;
+package simuladormemoria;
 
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.ConcurrentHashMap;

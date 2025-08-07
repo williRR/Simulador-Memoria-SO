@@ -1,4 +1,4 @@
-package simulador_memoria;
+package simuladormemoria;
 
 import java.util.concurrent.ConcurrentMap;
 import java.util.Date;
