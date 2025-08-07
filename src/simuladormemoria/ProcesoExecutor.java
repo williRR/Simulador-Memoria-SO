@@ -7,11 +7,13 @@ public class ProcesoExecutor implements Runnable {
     private final Proceso proceso;
     private final Memoria memoria;
     private final ConcurrentMap<Integer, Proceso> procesosEnEjecucion;
+    private final Monitor monitor;
 
-    public ProcesoExecutor(Proceso proceso, Memoria memoria, ConcurrentMap<Integer, Proceso> procesosEnEjecucion) {
+    public ProcesoExecutor(Proceso proceso, Memoria memoria, ConcurrentMap<Integer, Proceso> procesosEnEjecucion, Monitor monitor) {
         this.proceso = proceso;
         this.memoria = memoria;
         this.procesosEnEjecucion = procesosEnEjecucion;
+        this.monitor = monitor;
     }
 
     @Override
@@ -27,8 +29,7 @@ public class ProcesoExecutor implements Runnable {
         } finally {
             memoria.liberarMemoria(proceso.getMemoriaRequerida());
             procesosEnEjecucion.remove(proceso.getPid());
-            System.out.printf("[%s] <--- Finalizado y liberando memoria del proceso: %s (PID: %d)\n",
-                    new Date(), proceso.getNombre(), proceso.getPid());
+            monitor.agregarEvento("Proceso " + proceso.getNombre() + " (PID: " + proceso.getPid() + ") finalizado y memoria liberada.");
         }
     }
 }

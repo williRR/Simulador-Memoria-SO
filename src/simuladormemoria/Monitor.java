@@ -1,25 +1,29 @@
 package simuladormemoria;
 
-import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Date;
+import java.util.concurrent.ConcurrentLinkedQueue;
 
 public class Monitor implements Runnable {
-    private final GestorDeProcesos gestor;
+    private GestorDeProcesos gestor;
     private final Memoria memoria;
-    private final Queue<String> eventosRecientes = new LinkedList<>();
+    private final Queue<String> eventosRecientes;
     private static final int MAX_EVENTOS = 5;
 
-    public Monitor(GestorDeProcesos gestor, Memoria memoria) {
-        this.gestor = gestor;
+    public Monitor(Memoria memoria) {
         this.memoria = memoria;
+        this.eventosRecientes = new ConcurrentLinkedQueue<>();
+    }
+
+    public void setGestor(GestorDeProcesos gestor) {
+        this.gestor = gestor;
     }
 
     public void agregarEvento(String evento) {
-        if (eventosRecientes.size() >= MAX_EVENTOS) {
+        eventosRecientes.add(String.format("[%s] %s", new Date(), evento));
+        if (eventosRecientes.size() > MAX_EVENTOS) {
             eventosRecientes.poll(); // Elimina el evento más antiguo
         }
-        eventosRecientes.add(String.format("[%s] %s", new Date(), evento));
     }
 
     @Override
@@ -28,8 +32,10 @@ public class Monitor implements Runnable {
             limpiarConsola();
             imprimirEncabezado();
             imprimirEstadoRAM();
-            imprimirProcesosEnEjecucion();
-            imprimirColaDeEspera();
+            if (gestor != null) {
+                imprimirProcesosEnEjecucion();
+                imprimirColaDeEspera();
+            }
             imprimirEventosRecientes();
 
             try {
@@ -118,16 +124,9 @@ public class Monitor implements Runnable {
         System.out.println("+------------------------------------------------------+");
     }
 
-    private void limpiarConsola() {
-        try {
-            if (System.getProperty("os.name").contains("Windows")) {
-                new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
-            } else {
-                System.out.print("\033[H\033[2J");
-                System.out.flush();
-            }
-        } catch (Exception e) {
-            // Silenciar el error si no se puede limpiar la consola
+    public void limpiarConsola() {
+        for (int i = 0; i < 50; i++) {
+            System.out.println();
         }
     }
 }

@@ -5,8 +5,10 @@ public class Simulador {
         System.out.println("Iniciando simulador...");
 
         Memoria memoria = new Memoria();
-        GestorDeProcesos gestor = new GestorDeProcesos(memoria);
-        Monitor monitor = new Monitor(gestor, memoria);
+        Monitor monitor = new Monitor(memoria);
+        GestorDeProcesos gestor = new GestorDeProcesos(memoria, monitor);
+
+        monitor.setGestor(gestor);
 
         // Iniciar los hilos principales
         new Thread(gestor).start();
