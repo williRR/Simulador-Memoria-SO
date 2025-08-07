@@ -1,3 +1,4 @@
+/*
 package simulador_memoria;
 
 import java.util.concurrent.*;
@@ -193,3 +194,5 @@ public class SimuladorMemoria {
         crearProceso("Reproductor de Música", 100, 5);
     }
 }
+
+ */
