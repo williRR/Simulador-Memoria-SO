@@ -98,25 +98,36 @@ El programa se abrirá en el entorno de desarrollo.
  
 ### Pasos:
 5.
-Ir a la opción "Git" y seleccionar "Commit".
+Descripción de la Simulación del Programa
+Al ejecutar el programa, se simula el monitoreo del uso de la memoria RAM del sistema en tiempo real. En la ventana principal se muestra:
+Memoria total, usada y libre, expresada en megabytes (MB).
 
 
 
 
-<img width="425" height="209" alt="image" src="https://github.com/user-attachments/assets/6e2b6e27-028f-41b4-8e79-2eaaafe04838" />
- 
-parecerá una ventana donde se puede escribir un mensaje descriptivo sobre los cambios realizados (por ejemplo: "Agrega saludo inicial y bucle simple").
+<img width="425" height="226" alt="image" src="https://github.com/user-attachments/assets/224f0273-eac6-4cd6-b337-75d97c5b7ee6" />
+
+
+
+
+•	Un gráfico de barras que cambia dinámicamente según el porcentaje de uso.
+
+
+
+<img width="425" height="226" alt="image" src="https://github.com/user-attachments/assets/b63944a0-03d2-42cc-b635-904d6f01a00b" />
 
 
 
 
 
-<img width="402" height="220" alt="image" src="https://github.com/user-attachments/assets/fc4a41cb-8a7f-47e3-9fd1-4c8fc3356687" />
- 
-Finalmente, se puede elegir:
-•	"Commit" para guardar los cambios localmente.
-•	"Commit and Push..." si se desea subir los cambios al repositorio remoto.
+•	El valor del uso actual de RAM se actualiza continuamente, permitiendo observar cómo varía al ejecutarse diferentes procesos.
 
 
+
+<img width="425" height="226" alt="image" src="https://github.com/user-attachments/assets/3b7fd8ee-baab-47b6-a38d-661b2724efb0" />
+
+
+
+Este programa permite visualizar de forma clara y sencilla el comportamiento del consumo de memoria en el sistema.
 
 
